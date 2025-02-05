@@ -6,7 +6,7 @@ Financial Analyst specializing in advanced Excel and Power BI for data analysis 
 ## Projects Overview
 
 ### Financial Automation & Analysis
-- **[AR Automation](./AR%20Automation)**: End-to-end month-end accounts receivable automation system built with xlwings and pandas, streamlining financial reporting processes.
+- **[AR Automation](.AR_Automation (Under_DEV))**: End-to-end month-end accounts receivable automation system built with xlwings and pandas, streamlining financial reporting processes.
 - **[Forecast Regression](./Forecast%20Regression)**: Predictive financial modeling using scikit-learn for accurate business forecasting and trend analysis.
 - **[Data Visualization](./Data%20Visualization)**: Dynamic visualization tool for financial metrics and KPIs, enhancing data-driven decision making.
 - **[Web Scraper](./Web%20Scraper)**: Selenium-based automation tool for collecting and analyzing financial market data.
