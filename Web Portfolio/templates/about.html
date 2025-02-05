@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>About Me</h2>
+<p>Welcome to my portfolio! Here, you can learn more about my professional journey and skills.</p>
+<a href="{{ url_for('static', filename='cv/my_cv.pdf') }}" class="btn btn-primary mb-4" target="_blank">Download My CV</a>
+
+<h3>Contact Me for Job Offers</h3>
+<form method="POST" class="p-4 rounded shadow-sm bg-dark" style="max-width: 500px; margin: auto;">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.name.label(class="form-label") }}
+        {{ form.name(class="form-control", placeholder="Enter your name") }}
+        {% if form.name.errors %}
+            <div class="text-danger">{{ form.name.errors[0] }}</div>
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control", placeholder="Enter your email") }}
+        {% if form.email.errors %}
+            <div class="text-danger">{{ form.email.errors[0] }}</div>
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        {{ form.message.label(class="form-label") }}
+        {{ form.message(class="form-control", rows=5, placeholder="Enter your message") }}
+        {% if form.message.errors %}
+            <div class="text-danger">{{ form.message.errors[0] }}</div>
+        {% endif %}
+    </div>
+    {{ form.submit(class="btn btn-primary w-100") }}
+</form>
+
+{% endblock %}
+

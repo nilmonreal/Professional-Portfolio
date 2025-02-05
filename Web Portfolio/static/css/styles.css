@@ -1,0 +1,142 @@
+:root {
+    --primary-color: #FF204E;
+    --secondary-color: #A0153E;
+    --accent-color: #5D0E41;
+    --background-color: #00224D;
+    --text-light: #ffffff;
+    --text-dark: #333333;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-light);
+}
+
+.navbar {
+    background-color: var(--secondary-color);
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: var(--text-light) !important;
+}
+
+.navbar .nav-link.active {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+}
+
+.card {
+    background-color: var(--accent-color);
+    color: var(--text-light);
+    border: none;
+}
+
+.card .card-title {
+    color: var(--primary-color);
+}
+
+.card .card-text {
+    color: var(--text-light);
+
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--text-light);
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e61942; /* Slightly darker shade for hover */
+}
+
+/* Form Container */
+form {
+    background-color: var(--accent-color); /* Darker background color for the form */
+    color: var(--text-light);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Input Fields */
+.form-control {
+    background-color: #333; /* Dark background for input fields */
+    color: var(--text-light); /* Light text color */
+    border: 1px solid var(--primary-color); /* Border color matching theme */
+}
+
+.form-control:focus {
+    background-color: #444; /* Slightly lighter dark background when focused */
+    border-color: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: none; /* Remove Bootstrap's default shadow */
+}
+
+/* Placeholder Text */
+.form-control::placeholder {
+    color: #bbb; /* Light gray color for placeholder text */
+}
+
+/* Labels */
+.form-label {
+    color: var(--text-light); /* Light text color for labels */
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--text-light);
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e61942; /* Slightly darker shade for hover */
+}
+
+
+/* Footer Styling */
+.footer-theme {
+    background-color: var(--secondary-color); /* Set the background color */
+    color: var(--text-light); /* Set the text color */
+    padding: 20px 0;
+}
+
+.footer-theme p {
+    color: var(--text-light); /* Text color for copyright text */
+}
+
+.footer-link {
+    color: var(--text-light); /* Text color for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--primary-color); /* Hover color for links */
+}
+
+/* Carousel Image Styling */
+.carousel-item img {
+    width: 100%;
+    height: 300px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures the image fills the area without distortion */
+}
+
+#projectCarousel {
+    max-width: 600px; /* Adjust to desired maximum width */
+    margin: auto;
+}
+
+.badge {
+    font-size: 0.9rem;
+    background-color: #5D0E41; /* Adjust color as per your theme */
+}
+
+.btn-primary {
+    background-color: #FF204E; /* Button color matching your theme */
+    border: none;
+}

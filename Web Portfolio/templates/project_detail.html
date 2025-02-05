@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Title -->
+    <h2 class="text-center">{{ project.title }}</h2>
+
+    <!-- Description and Gallery Section -->
+    <div class="row mt-4">
+        <!-- Description Column -->
+        <div class="col-md-6 mb-4">
+            <h5>About This Project:</h5>
+            <p>{{ project.description }}</p>
+            <h5 class="mt-4">Technologies Used:</h5>
+            <ul class="list-inline">
+                {% for tech in project.technologies %}
+                    <li class="list-inline-item badge bg-secondary text-white p-2 m-1">{{ tech }}</li>
+                {% endfor %}
+            </ul>
+            <a href="{{ project.github_url }}" class="btn btn-primary mt-4" target="_blank">View on GitHub</a>
+        </div>
+
+        <!-- Carousel Column -->
+        <div class="col-md-6">
+            <h5 class="text-center">Gallery:</h5>
+            <div id="projectCarousel" class="carousel slide mx-auto" style="max-width: 100%; height: auto;" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for image in project.images %}
+                    <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                        <img src="{{ url_for('static', filename='images/' + image) }}" class="d-block w-100" alt="Project Image" style="max-width: 100%; height: 300px; object-fit: cover;">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
