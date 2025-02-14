@@ -65,29 +65,6 @@ def project_detail(title):
     return render_template('project_detail.html', title=project['title'], project=project, current_year = datetime.now().year)
 
 
-# @app.route('/about', methods=['GET', 'POST'])
-# def about():
-#     form = JobOfferForm()
-#     if form.validate_on_submit():
-#         # Handle form submission logic, e.g., send an email or store in a database
-#         name = form.name.data
-#         email = form.email.data
-#         message = form.message.data
-
-#         # Send an email (optional)
-#         msg = Message('Job Offer from Portfolio', sender=email, recipients=['nilmonreal@gmail.com'])
-#         msg.body = f"Name: {name}\nEmail: {email}\n\n{message}"
-#         mail.send(msg)
-
-#         # Optional: Send confirmation email to the user
-#         confirmation_msg = Message('Thank you for your message!', sender='your_email@example.com', recipients=[email])
-#         confirmation_msg.body = f"Hi {name},\n\nThank you for reaching out with a job offer. I'll get back to you soon.\n\nBest regards,\nYour Name"
-#         mail.send(confirmation_msg)
-
-#         flash('Thank you! Your message has been sent, and we have emailed a confirmation.', 'success')
-#         return redirect(url_for('about'))
-#     return render_template('about.html', title='About Me', form=form, current_year = datetime.now().year)
-
 @app.route('/about', methods=['GET', 'POST'])
 def about():
     form = JobOfferForm()
