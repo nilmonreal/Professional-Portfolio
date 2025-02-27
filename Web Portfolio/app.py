@@ -13,7 +13,7 @@ class JobOfferForm(FlaskForm):
     submit = SubmitField('Send')
 
 app = Flask(__name__)
-app.secret_key = 'nifu'
+app.secret_key = 'KEY'
 
 # Optional: Configure Flask-Mail if you want to send emails directly from the form
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Replace with your mail server
