@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Delights - Artisanal Cakes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .logo-text {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .cake-card:hover .cake-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .cake-overlay {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1558315957-d6c15ae7265c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .cart-item-enter {
+            animation: slideIn 0.3s forwards;
+        }
+        
+        .cart-item-exit {
+            animation: slideOut 0.3s forwards;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-rose-50">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-birthday-cake text-3xl text-rose-500 mr-2"></i>
+                <h1 class="logo-text text-3xl font-bold text-rose-600">Sweet Delights</h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-rose-900 hover:text-rose-600 font-medium">Home</a>
+                <a href="#cakes" class="text-rose-900 hover:text-rose-600 font-medium">Our Cakes</a>
+                <a href="#about" class="text-rose-900 hover:text-rose-600 font-medium">About</a>
+                <a href="#testimonials" class="text-rose-900 hover:text-rose-600 font-medium">Testimonials</a>
+                <a href="#contact" class="text-rose-900 hover:text-rose-600 font-medium">Contact</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <button id="cart-btn" class="relative text-rose-900 hover:text-rose-600">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-rose-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+                <button class="md:hidden text-rose-900" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-rose-900 hover:text-rose-600 font-medium">Home</a>
+                <a href="#cakes" class="text-rose-900 hover:text-rose-600 font-medium">Our Cakes</a>
+                <a href="#about" class="text-rose-900 hover:text-rose-600 font-medium">About</a>
+                <a href="#testimonials" class="text-rose-900 hover:text-rose-600 font-medium">Testimonials</a>
+                <a href="#contact" class="text-rose-900 hover:text-rose-600 font-medium">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero min-h-screen flex items-center justify-center text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 logo-text">Handcrafted Cakes for Every Occasion</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Delicious, beautiful cakes made with love and the finest ingredients</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#cakes" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Order Now</a>
+                <a href="#about" class="bg-white hover:bg-gray-100 text-rose-600 font-bold py-3 px-6 rounded-full transition duration-300">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cakes Section -->
+    <section id="cakes" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-rose-900 mb-4">Our Signature Cakes</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Each cake is a masterpiece, crafted with premium ingredients and artistic flair</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cake 1 -->
+                <div class="cake-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1389&q=80" alt="Chocolate Fudge Cake" class="w-full h-64 object-cover">
+                        <div class="cake-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                            <button class="add-to-cart bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 px-6 rounded-full transition duration-300" data-id="1" data-name="Chocolate Fudge Cake" data-price="45">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-rose-900 mb-2">Chocolate Fudge Cake</h3>
+                        <p class="text-gray-600 mb-4">Rich chocolate cake with layers of fudge filling, covered in chocolate ganache</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rose-600 font-bold text-xl">$45</span>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-gray-600 ml-2 text-sm">(48)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cake 2 -->
+                <div class="cake-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1558301211-0d8c65df745a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Red Velvet Cake" class="w-full h-64 object-cover">
+                        <div class="cake-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                            <button class="add-to-cart bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 px-6 rounded-full transition duration-300" data-id="2" data-name="Red Velvet Cake" data-price="50">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-rose-900 mb-2">Red Velvet Cake</h3>
+                        <p class="text-gray-600 mb-4">Classic red velvet with cream cheese frosting and delicate white chocolate shavings</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rose-600 font-bold text-xl">$50</span>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-gray-600 ml-2 text-sm">(36)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cake 3 -->
+                <div class="cake-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Berry Cheesecake" class="w-full h-64 object-cover">
+                        <div class="cake-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                            <button class="add-to-cart bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 px-6 rounded-full transition duration-300" data-id="3" data-name="Berry Cheesecake" data-price="55">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-rose-900 mb-2">Berry Cheesecake</h3>
+                        <p class="text-gray-600 mb-4">Creamy New York-style cheesecake with mixed berry compote and fresh berries</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rose-600 font-bold text-xl">$55</span>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-gray-600 ml-2 text-sm">(42)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cake 4 -->
+                <div class="cake-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80" alt="Carrot Cake" class="w-full h-64 object-cover">
+                        <div class="cake-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                            <button class="add-to-cart bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 px-6 rounded-full transition duration-300" data-id="4" data-name="Carrot Cake" data-price="40">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-rose-900 mb-2">Carrot Cake</h3>
+                        <p class="text-gray-600 mb-4">Moist spiced carrot cake with walnuts, raisins and cream cheese frosting</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rose-600 font-bold text-xl">$40</span>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="text-gray-600 ml-2 text-sm">(28)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cake 5 -->
+                <div class="cake-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1551401716-7d4a2e636027?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Lemon Drizzle Cake" class="w-full h-64 object-cover">
+                        <div class="cake-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                            <button class="add-to-cart bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 px-6 rounded-full transition duration-300" data-id="5" data-name="Lemon Drizzle Cake" data-price="38">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-rose-900 mb-2">Lemon Drizzle Cake</h3>
+                        <p class="text-gray-600 mb-4">Zesty lemon sponge soaked in lemon syrup with a sweet lemon glaze</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rose-600 font-bold text-xl">$38</span>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-gray-600 ml-2 text-sm">(31)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cake 6 -->
+                <div class="cake-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1498&q=80" alt="Vanilla Dream Cake" class="w-full h-64 object-cover">
+                        <div class="cake-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                            <button class="add-to-cart bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 px-6 rounded-full transition duration-300" data-id="6" data-name="Vanilla Dream Cake" data-price="42">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-rose-900 mb-2">Vanilla Dream Cake</h3>
+                        <p class="text-gray-600 mb-4">Light vanilla sponge with vanilla buttercream and delicate sugar flowers</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rose-600 font-bold text-xl">$42</span>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-gray-600 ml-2 text-sm">(39)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                    View All Cakes
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-rose-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12">
+                    <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1498&q=80" alt="Our Bakery" class="rounded-xl shadow-lg w-full">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-rose-900 mb-6">Our Story</h2>
+                    <p class="text-gray-700 mb-4">Founded in 2010, Sweet Delights began as a small home bakery with a passion for creating beautiful, delicious cakes. What started as a hobby quickly grew into a beloved local business as word spread about our exceptional quality and attention to detail.</p>
+                    <p class="text-gray-700 mb-6">Today, we're proud to serve our community with artisanal cakes made from scratch using only the finest ingredients. Each cake is a labor of love, crafted by our talented team of bakers and decorators who pour their creativity into every creation.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="text-rose-600 text-3xl mb-2">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h3 class="font-bold text-rose-900 mb-1">Award Winning</h3>
+                            <p class="text-gray-600 text-sm">Recognized for excellence in baking</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="text-rose-600 text-3xl mb-2">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3 class="font-bold text-rose-900 mb-1">Natural Ingredients</h3>
+                            <p class="text-gray-600 text-sm">Locally sourced, high-quality</p>
+                        </div>
+                    </div>
+                    
+                    <button class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                        Meet Our Team
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-rose-900 mb-4">What Our Customers Say</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Don't just take our word for it - hear from our happy customers</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-rose-50 p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The chocolate fudge cake was absolutely divine! It was the highlight of my daughter's birthday party. Everyone asked where we got it from!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <h4 class="font-bold text-rose-900">Sarah Johnson</h4>
+                            <p class="text-gray-600 text-sm">Mother of two</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-rose-50 p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"I've ordered several cakes from Sweet Delights for corporate events. They're always stunning and delicious. Professional service every time."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <h4 class="font-bold text-rose-900">Michael Chen</h4>
+                            <p class="text-gray-600 text-sm">Event Coordinator</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-rose-50 p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Our wedding cake was beyond perfect! The team worked closely with us to create exactly what we envisioned. The taste was incredible too!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily & David" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <h4 class="font-bold text-rose-900">Emily & David</h4>
+                            <p class="text-gray-600 text-sm">Newlyweds</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-rose-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-rose-900 mb-4">Get In Touch</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">Have questions or want to place a custom order? We'd love to hear from you!</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="lg:w-1/2 bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-rose-900 mb-6">Send Us a Message</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Your Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500"></textarea>
+                        </div>
+                        <button type="submit" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 w-full">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
+                        <h3 class="text-2xl font-bold text-rose-900 mb-6">Visit Our Bakery</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="text-rose-600 mt-1 mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Address</h4>
+                                    <p class="text-gray-600">123 Sweet Street, Dessertville, DV 12345</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-rose-600 mt-1 mr-4">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Phone</h4>
+                                    <p class="text-gray-600">(555) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-rose-600 mt-1 mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Email</h4>
+                                    <p class="text-gray-600">hello@sweetdelights.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-rose-600 mt-1 mr-4">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Hours</h4>
+                                    <p class="text-gray-600">Monday - Friday: 8am - 6pm</p>
+                                    <p class="text-gray-600">Saturday: 9am - 5pm</p>
+                                    <p class="text-gray-600">Sunday: 10am - 4pm</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-rose-900 mb-6">Follow Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-rose-100 hover:bg-rose-200 text-rose-600 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-rose-100 hover:bg-rose-200 text-rose-600 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="bg-rose-100 hover:bg-rose-200 text-rose-600 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                            <a href="#" class="bg-rose-100 hover:bg-rose-200 text-rose-600 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-12 bg-rose-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Join Our Sweet Community</h2>
+            <p class="max-w-2xl mx-auto mb-6">Subscribe to our newsletter for exclusive offers, new flavors, and baking tips!</p>
+            <form class="flex flex-col sm:flex-row max-w-md mx-auto">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-full sm:rounded-r-none rounded-r-full mb-2 sm:mb-0 focus:outline-none text-gray-900">
+                <button type="submit" class="bg-rose-900 hover:bg-rose-800 px-6 py-3 rounded-r-full sm:rounded-l-none rounded-l-full font-bold transition duration-300">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-rose-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <i class="fas fa-birthday-cake text-2xl text-rose-400 mr-2"></i>
+                    <h1 class="logo-text text-2xl font-bold text-white">Sweet Delights</h1>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row sm:space-x-8 space-y-2 sm:space-y-0 text-center">
+                    <a href="#" class="hover:text-rose-300 transition duration-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-rose-300 transition duration-300">Terms of Service</a>
+                    <a href="#" class="hover:text-rose-300 transition duration-300">FAQ</a>
+                    <a href="#" class="hover:text-rose-300 transition duration-300">Careers</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-rose-800 mt-6 pt-6 text-center text-sm text-rose-300">
+                <p>&copy; 2023 Sweet Delights. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="flex justify-between items-center border-b pb-4">
+                        <h3 class="text-2xl font-bold text-rose-900">Your Cart</h3>
+                        <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div id="cart-items" class="max-h-96 overflow-y-auto py-4">
+                        <!-- Cart items will be added here dynamically -->
+                        <div class="text-center py-8 text-gray-500" id="empty-cart-message">
+                            <i class="fas fa-shopping-cart text-4xl mb-4 text-rose-200"></i>
+                            <p>Your cart is empty</p>
+                        </div>
+                    </div>
+                    
+                    <div id="cart-summary" class="border-t pt-4 hidden">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">Subtotal:</span>
+                            <span id="cart-subtotal" class="font-medium">$0.00</span>
+                        </div>
+                        <div class="flex justify-between mb-4">
+                            <span class="font-medium text-gray-700">Delivery:</span>
+                            <span class="font-medium">$5.00</span>
+                        </div>
+                        <div class="flex justify-between border-t pt-2 mb-4">
+                            <span class="font-bold text-lg text-rose-900">Total:</span>
+                            <span id="cart-total" class="font-bold text-lg text-rose-900">$0.00</span>
+                        </div>
+                        
+                        <button id="checkout-btn" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-full transition duration-300 mb-2">
+                            Proceed to Checkout
+                        </button>
+                        <button id="continue-shopping" class="w-full bg-white hover:bg-gray-100 text-rose-600 font-bold py-3 px-4 rounded-full border border-rose-600 transition duration-300">
+                            Continue Shopping
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Success Toast -->
+    <div id="success-toast" class="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hidden flex items-center">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span>Item added to cart!</span>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Cart Functionality
+        const cartBtn = document.getElementById('cart-btn');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCart = document.getElementById('close-cart');
+        const continueShopping = document.getElementById('continue-shopping');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const cartSummary = document.getElementById('cart-summary');
+        const cartCount = document.getElementById('cart-count');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const successToast = document.getElementById('success-toast');
+        
+        let cart = [];
+        
+        // Open/Close Cart Modal
+        cartBtn.addEventListener('click', () => {
+            cartModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        continueShopping.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Add to Cart Functionality
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const id = e.target.getAttribute('data-id');
+                const name = e.target.getAttribute('data-name');
+                const price = parseFloat(e.target.getAttribute('data-price'));
+                
+                // Check if item already in cart
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                
+                // Show success toast
+                successToast.classList.remove('hidden');
+                setTimeout(() => {
+                    successToast.classList.add('hidden');
+                }, 3000);
+            });
+        });
+        
+        // Update Cart Function
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items display
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                emptyCartMessage.classList.remove('hidden');
+                cartSummary.classList.add('hidden');
+            } else {
+                emptyCartMessage.classList.add('hidden');
+                cartSummary.classList.remove('hidden');
+                
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'flex justify-between items-center py-4 border-b cart-item-enter';
+                    cartItem.innerHTML = `
+                        <div class="flex items-center">
+                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1389&q=80" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg">
+                            <div class="ml-4">
+                                <h4 class="font-medium text-gray-800">${item.name}</h4>
+                                <p class="text-rose-600 font-medium">$${item.price.toFixed(2)}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <button class="decrease-quantity text-gray-500 hover:text-rose-600 px-2" data-id="${item.id}">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="mx-2">${item.quantity}</span>
+                            <button class="increase-quantity text-gray-500 hover:text-rose-600 px-2" data-id="${item.id}">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="remove-item text-gray-500 hover:text-red-500 ml-4" data-id="${item.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItem);
+                });
+                
+                // Calculate subtotal and total
+                const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                const deliveryFee = 5.00;
+                const total = subtotal + deliveryFee;
+                
+                cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+                cartTotal.textContent = `$${total.toFixed(2)}`;
+                
+                // Add event listeners to quantity buttons
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.closest('button').getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        if (item) {
+                            item.quantity += 1;
+                            updateCart();
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.closest('button').getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        if (item) {
+                            if (item.quantity > 1) {
+                                item.quantity -= 1;
+                            } else {
+                                // Remove item if quantity is 1
+                                cart = cart.filter(item => item.id !== id);
+                            }
+                            updateCart();
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.closest('button').getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                    });
+                });
+            }
+        }
+        
+        // Checkout Button
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            alert('Checkout functionality would be implemented here!');
+        });
+        
+        // Contact Form Submission
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            e.target.reset();
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
